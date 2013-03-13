@@ -21,8 +21,8 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 				'syntax' => $this->fileType,
 				'debug'  => FALSE,
 				'callbacks' => array(
-					'warn'  => '',
-					'debug' => '',
+					'warn'  => 'tx_DyncssPhpsass_ParserSass_callback',
+					'debug' => 'tx_DyncssPhpsass_ParserSass_callback',
 				)
 			)
 		);
@@ -64,13 +64,16 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 	 */
 	protected function _compileFile($inputFilename, $preparedFilename, $outputFilename, $cacheFilename) {
 		try {
-			file_put_contents(
-				$outputFilename,
-				$this->parser->toCss($preparedFilename)
-			);
+			return $this->parser->toCss($preparedFilename);
 		} catch(Exception $e) {
 			return $e;
 		}
 
 	}
+}
+
+function tx_DyncssPhpsass_ParserSass_callback($filename, $parser) {
+	print_r($file);
+	print_r($parser);
+	die();
 }
