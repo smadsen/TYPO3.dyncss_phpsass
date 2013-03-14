@@ -48,7 +48,7 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 			foreach($this->overrides as $key => $value) {
 				$string = preg_replace(
 					'/\$' . $key . ':(.*);/U',
-					 '\$' . $key . ': ' . $value . ';',
+					 '\$' . $key . ': ' . $value,
 					 $string,
 					 1
 				);
