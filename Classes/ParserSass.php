@@ -10,6 +10,7 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 	 * prepare the parser
 	 */
 	function __construct() {
+		$this->initEmConfiguration();
 		// ensure no one else has loaded lessc already ;)
 		if(!class_exists('SassParser')) {
 			include_once(t3lib_extMgm::extPath('dyncss_phpsass') . 'Resources/Private/Php/PHPSass/SassParser.php');
@@ -26,6 +27,10 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 				)
 			)
 		);
+		if($this->config['enableDebugMode']) {
+			$this->parser->debug      = TRUE;
+			$this->parser->debug_info = TRUE;
+		}
 	}
 	/**
 	 * @param $string
@@ -73,7 +78,5 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 }
 
 function tx_DyncssPhpsass_ParserSass_callback($filename, $parser) {
-	print_r($file);
-	print_r($parser);
-	die();
+
 }
