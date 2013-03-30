@@ -11,7 +11,7 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 	 */
 	function __construct() {
 		$this->initEmConfiguration();
-		// ensure no one else has loaded lessc already ;)
+		// ensure no one else has loaded sass already ;)
 		if(!class_exists('SassParser')) {
 			include_once(t3lib_extMgm::extPath('dyncss_phpsass') . 'Resources/Private/Php/PHPSass/SassParser.php');
 		}
@@ -48,7 +48,7 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 	 */
 	protected function _prepareCompile($string) {
 		/**
-		 * Change the initial value of a less constant before compiling the file
+		 * Change the initial value of a sass constant before compiling the file
 		 */
 		if(is_array($this->overrides)) {
 			foreach($this->overrides as $key => $value) {
