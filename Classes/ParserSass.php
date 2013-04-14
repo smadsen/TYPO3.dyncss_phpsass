@@ -74,12 +74,12 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 
 			return $this->parser->toCss($preparedFilename);
 		} catch(Exception $e) {
-			return $e;
+			return print_r($this, TRUE) . "\n\n\n" .$e;
 		}
 
 	}
 }
 
 function tx_DyncssPhpsass_ParserSass_callback($filename, $parser) {
-
+	#echo $filename . print_r($parser, TRUE);
 }
