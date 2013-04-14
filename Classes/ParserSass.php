@@ -70,7 +70,7 @@ class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
 	 */
 	protected function _compileFile($inputFilename, $preparedFilename, $outputFilename, $cacheFilename) {
 		try {
-			$this->parser->load_paths[] = dirname($inputFilename);
+			$this->parser->load_paths[] = dirname($inputFilename) . '/';
 			$this->parser->load_paths[] = PATH_site;
 			return $this->parser->toCss($preparedFilename);
 		} catch(Exception $e) {
