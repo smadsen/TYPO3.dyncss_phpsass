@@ -51,7 +51,7 @@ class SassContentNode extends SassNode {
     $children = array();
     foreach ($context->getContent() as $child) {
       $child->parent = $this->parent;
-      $children = array_merge($children, $child->parse($pcontext));
+      $children = array_merge($children, $child->parse($pcontext->parent));
     }
     return $children;
   }
