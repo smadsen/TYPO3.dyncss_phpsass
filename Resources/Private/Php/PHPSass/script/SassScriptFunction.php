@@ -257,6 +257,11 @@ class SassScriptFunction {
     $provided_copy = $provided;
 
     foreach ($required as $name=>$default) {
+      if ($default === null && strpos($name, '=') !== FALSE) {
+          list($name, $default) = explode('=', $name);
+          $name = trim($name);
+          $default = trim($default);
+      }
       if (count($provided)) {
         $arg = array_shift($provided);
       }
