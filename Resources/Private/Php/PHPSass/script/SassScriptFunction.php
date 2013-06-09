@@ -20,8 +20,8 @@ class SassScriptFunction {
   /**@#+
    * Regexes for matching and extracting functions and arguments
    */
-  const MATCH = '/^(((-\w)|(\w))[-\w]*)\(/';
-  const MATCH_FUNC = '/^((?:(?:-\w)|(?:\w))[-\w]*)\((.*)\)/';
+  const MATCH = '/^(((-\w)|(\w))[-\w:.]*)\(/';
+  const MATCH_FUNC = '/^((?:(?:-\w)|(?:\w))[-\w:.]*)\((.*)\)/';
   const SPLIT_ARGS = '/\s*((?:[\'"].*?["\'])|(?:.+?(?:\(.*\).*?)?))\s*(?:,|$)/';
   const NAME = 1;
   const ARGS = 2;
