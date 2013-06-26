@@ -15,9 +15,9 @@ function loadCallback($file, $parser)
 
         }
     }
+
     return $paths;
 }
-
 
 function getFunctions($extensions)
 {
@@ -42,13 +42,11 @@ function getFunctions($extensions)
     return $output;
 }
 
-
 $file = 'example.scss';
 $path = '../';
 $library = $path . '/SassParser.php';
 
 if ($path && file_exists($library)) {
-
 
     try {
         require_once ($library);
@@ -82,5 +80,3 @@ if ($path && file_exists($library)) {
 } else {
     echo 'Path or library are wrong';
 }
-
-

@@ -84,7 +84,8 @@ class Own implements ExtensionInterface
         }
     }
 
-    public static function ownDemoFunction(){
+    public static function ownDemoFunction()
+    {
         return new SassString("'This is my own Demo Function'");
     }
 }

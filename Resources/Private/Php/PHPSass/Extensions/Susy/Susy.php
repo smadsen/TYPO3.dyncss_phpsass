@@ -13,7 +13,6 @@ class Susy implements ExtensionInterface
 
     public static function getFunctions($namespace)
     {
-
         return array();
     }
 
@@ -51,6 +50,7 @@ class Susy implements ExtensionInterface
                 closedir($handle);
             }
         }
+
         return $alias;
     }
 

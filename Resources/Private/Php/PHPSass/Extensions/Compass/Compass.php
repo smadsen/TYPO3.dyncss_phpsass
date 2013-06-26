@@ -152,6 +152,7 @@ class Compass implements ExtensionInterface
         if ($path) {
             return $path;
         }
+
         return false;
     }
 
@@ -160,6 +161,7 @@ class Compass implements ExtensionInterface
         if ($info = self::compassImageInfo($file)) {
             return new SassNumber($info[0] . 'px');
         }
+
         return new SassNumber('0px');
     }
 
@@ -168,6 +170,7 @@ class Compass implements ExtensionInterface
         if ($info = self::compassImageInfo($file)) {
             return new SassNumber($info[1] . 'px');
         }
+
         return new SassNumber('0px');
     }
 
@@ -178,9 +181,9 @@ class Compass implements ExtensionInterface
                 return $info;
             }
         }
+
         return false;
     }
-
 
     public static function compassInlineImage($file, $mime = null)
     {
@@ -189,8 +192,10 @@ class Compass implements ExtensionInterface
             $mime = $info['mime'];
             $data = base64_encode(file_get_contents($path));
             # todo - do not return encoded if file size > 32kb
+
             return new SassString("url('data:$mime;base64,$data')");
         }
+
         return new SassString('');
     }
 
@@ -252,7 +257,7 @@ class Compass implements ExtensionInterface
             if (is_object($v)) {
                 $string = (isset($v->value) ? $v->value : false);
             } else {
-                $string = (string)$v;
+                $string = (string) $v;
             }
             if (empty($string) || $string == 'false') {
                 unset($args[$k]);
@@ -260,6 +265,7 @@ class Compass implements ExtensionInterface
             }
             $list[] = $string;
         }
+
         return new SassString(implode($sep, $list));
     }
 
@@ -282,6 +288,7 @@ class Compass implements ExtensionInterface
         if (isset($list[$place])) {
             return current(SassScriptLexer::$instance->lex($list[$place], new SassContext()));
         }
+
         return new SassBoolean(false);
     }
 
@@ -292,6 +299,7 @@ class Compass implements ExtensionInterface
         foreach ($args as $arg) {
             $list = array_merge($list, self::compassList($arg));
         }
+
         return new SassString(implode(', ', $list));
     }
 
@@ -299,6 +307,7 @@ class Compass implements ExtensionInterface
     {
         $args = func_get_args();
         $list = self::compassList($args, ',');
+
         return new SassString(implode(' ', $list));
     }
 
@@ -306,6 +315,7 @@ class Compass implements ExtensionInterface
     {
         $args = func_get_args();
         $list = self::compassList($args, ',');
+
         return new SassNumber(count($list));
     }
 
@@ -315,6 +325,7 @@ class Compass implements ExtensionInterface
         $end = array_pop($args);
         $start = array_pop($args);
         $list = self::compassList($args, ',');
+
         return implode(',', array_slice($list, $start, $end));
     }
 
@@ -322,6 +333,7 @@ class Compass implements ExtensionInterface
     {
         $args = array();
         $args[] = 'first';
+
         return call_user_func_array('self::compassCompassNth', $args);
     }
 
@@ -366,6 +378,7 @@ class Compass implements ExtensionInterface
             }
         }
         $out[] = $stack;
+
         return $out;
     }
 
@@ -395,6 +408,7 @@ class Compass implements ExtensionInterface
         foreach ($list as $k => $selector) {
             $list[$k] = trim($selector) . $new;
         }
+
         return new SassString(implode(', ', $list));
     }
 
@@ -414,13 +428,14 @@ class Compass implements ExtensionInterface
             $to = 6;
         }
 
-        $from = (int)$from;
-        $to = (int)$to;
+        $from = (int) $from;
+        $to = (int) $to;
 
         $output = array();
         for ($i = $from; $i <= $to; $i++) {
             $output[] = 'h' . $i;
         }
+
         return new SassString(implode(', ', $output));
     }
 
@@ -459,7 +474,6 @@ class Compass implements ExtensionInterface
 
     public static function compassStylesheetUrl($path, $only_path = false)
     {
-
         return self::compassUrl($path, $only_path);
     }
 
@@ -489,6 +503,7 @@ class Compass implements ExtensionInterface
         if ($only_path) {
             return new SassString($path);
         }
+
         return new SassString("url('$path')");
     }
 
@@ -497,15 +512,16 @@ class Compass implements ExtensionInterface
         $ret = '';
         if ($from == 'top') {
             $ret = 'bottom';
-        } else if ($from == 'bottom') {
+        } elseif ($from == 'bottom') {
             $ret = 'top';
-        } else if ($from == 'left') {
+        } elseif ($from == 'left') {
             $ret = 'right';
-        } else if ($from == 'right') {
+        } elseif ($from == 'right') {
             $ret = 'left';
-        } else if ($from == 'center') {
+        } elseif ($from == 'center') {
             $ret = 'center';
         }
+
         return $ret;
     }
 }
