@@ -1,6 +1,6 @@
 <?php
 
-class tx_DyncssPhpsass_ParserSass extends tx_Dyncss_Parser_AbstractParser{
+class tx_DyncssPhpsass_ParserSass extends \KayStrobach\DynCss\Parser\AbstractParser{
 	/**
 	 * @var string $filetype type of the file, either sass or scss
 	 */
